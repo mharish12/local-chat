@@ -147,6 +147,7 @@ const ChatWS = () => {
       sender: username,
       content: message,
       type: 'CHAT',
+      dataTime: new Date(),
     };
     sendMessage(chatMessage);
     setMessage('');
