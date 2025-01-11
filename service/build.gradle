@@ -1,0 +1,126 @@
+buildscript {
+    ext {
+        junitVersion = "5.8.1"
+        springBootVersion = '3.4.1'
+        webFluxVersion = "2.8.1"
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+    }
+
+}
+
+plugins {
+    id 'maven-publish'
+    id 'java'
+    id 'idea'
+    id 'java-library'
+    id "io.freefair.lombok" version "8.10"
+//    id "org.siouan.frontend" version "3.0.2"
+    id 'org.liquibase.gradle' version '2.2.0'
+    id 'org.springframework.boot' version "3.4.1"
+
+}
+
+//apply plugin: "org.siouan.frontend"
+apply plugin: 'org.liquibase.gradle'
+
+group = 'com.h12.chat'
+version = '0.0.1'
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot-starter-integration:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}"
+    implementation 'org.springframework.integration:spring-integration-http:6.4.1'
+//    implementation 'org.springframework.integration:spring-integration-stomp'
+    implementation 'org.springframework.integration:spring-integration-websocket:6.4.1'
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web-services:${springBootVersion}"
+    implementation 'org.springframework.integration:spring-integration-ws:6.4.1'
+
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.14.2'
+
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.postgresql:postgresql:42.7.4'
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    runtimeOnly 'com.h2database:h2:2.3.232'
+
+
+    // Utilities
+//    compileOnly 'org.projectlombok:lombok:1.18.34'
+//    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+//    liquibaseRuntime 'org.liquibase:liquibase-core'
+//    liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.1'
+//    liquibaseRuntime 'info.picocli:picocli:4.7.5'
+//    liquibaseRuntime 'org.yaml:snakeyaml:2.0'
+
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webflux-ui', version: webFluxVersion
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-api', version: webFluxVersion
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: webFluxVersion
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//liquibase {
+//    activities {
+//        main(({
+//            changeLogFile 'src/main/resources/db/changelog/db.changelog-master.xml'
+//        } as String))
+//    }
+//    runList = 'main'
+//}
+
+
+//tasks.register("processFrontendResources", Copy) {
+//    // Directory containing the artifacts produced by the frontend project
+//    var frontendProjectBuildDir = project(":frontend").layout.buildDirectory
+//    var frontendBuildDir = frontendProjectBuildDir.dir("www")
+//    // Directory where the frontend artifacts must be copied to be packaged alltogether with the backend by the 'war'
+//    // plugin.
+//    var frontendResourcesDir = project.layout.buildDirectory.dir("resources/main/public")
+//
+//    group = "Frontend"
+//    description = "Process frontend resources"
+//    dependsOn(":frontend:assembleFrontend")
+//
+//    from frontendBuildDir
+//    into frontendResourcesDir
+//}
+
+//tasks.named("processResources") {
+//    dependsOn("processFrontendResources")
+//}

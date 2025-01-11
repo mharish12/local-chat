@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "workspaces": [
+    "local-chat",
+    "video-chat-client",
+    "video-chat-app"
+  ]
+}

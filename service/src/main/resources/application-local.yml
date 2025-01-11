@@ -1,0 +1,37 @@
+allowCredentials: false
+
+spring:
+  security:
+    enabled: false
+    user:
+      password: root123
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/parking_lot_db
+    hikari:
+      auto-commit: off
+      maximum-pool-size: 10
+      minimum-idle: 30000
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  show-actuator: true
+  cache:
+    disabled: true
+  show-oauth2-endpoints: true
+  pre-loading-enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info,prometheus
+
+
+

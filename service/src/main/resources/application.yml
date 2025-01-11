@@ -1,0 +1,45 @@
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: INFO
+      hibernate: INFO
+    com: INFO
+
+spring.profiles.active: local
+
+spring:
+  security:
+    enabled: false
+    user:
+      password: root123
+  config:
+    use-legacy-processing: false
+  datasource:
+    hikari:
+      maximumPoolSize: 5
+      connectionTimeout: 20000
+    #    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/parking_lot_db
+    database: parking_lot_db
+    username: postgres
+    password: postgres
+    generateDDL: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mappings
+  #        include: *
+  #        include: info, health, configprops, env, prometheus, metrics, openapi, swagger-ui
+  security:
+    enabled: false
