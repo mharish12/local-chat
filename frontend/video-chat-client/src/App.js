@@ -1,16 +1,16 @@
 import './App.css';
-import Chat from './components/Chat';
+import Home from './components/UI/Home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <header className=""></header>
-      <Chat />
-      <div>
-        <h1>Local Video Chat</h1>
-      </div>
-    </>
-  );
+  return <></>;
 }
 
 export default App;

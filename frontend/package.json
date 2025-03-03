@@ -3,6 +3,6 @@
   "workspaces": [
     "local-chat",
     "video-chat-client",
-    "video-chat-app"
+    "video-chat-server"
   ]
 }

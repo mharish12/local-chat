@@ -1,5 +1,5 @@
 {
-  "name": "video-chat-app",
+  "name": "video-chat-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
